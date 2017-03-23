@@ -1,0 +1,33 @@
+html,
+body {
+    height: 100%;
+    font-size: 14px;
+    font-family: "Georgia", "sans-serif";
+}
+
+header {
+    height: 20%;
+}
+
+h1 {
+    font-size: 200%;
+}
+
+h2 {
+	text-align: center;
+}
+
+main {
+    height: 100%;
+}
+
+table {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1%;
+    text-align: center;
+}
+
+footer {
+    height: 20%;
+}

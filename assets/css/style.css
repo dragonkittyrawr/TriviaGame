@@ -22,12 +22,36 @@ main {
 }
 
 table {
-    width: 80%;
     margin: 0 auto;
-    padding: 1%;
     text-align: center;
+    border-collapse: collapse;
+    padding: 1%;
+    min-width: 300px;
+}
+
+tr {
+	border: solid 1px #000000;
+    padding: 1%;
+}
+
+td {
+	padding: 15%;
+	white-space: nowrap;
 }
 
 footer {
     height: 20%;
+}
+
+#answer1 {
+	background: pink;
+}
+#answer2 {
+	background: cyan;
+}
+#answer3 {
+	background: magenta;
+}
+#answer4 {
+	background: yellow;
 }

@@ -93,7 +93,7 @@ var objSize = Object.keys(questions).length;
 
 
 //  30 second timer.
-var tickTock = 30;
+var tickTock = 15;
 
 //  Variable that will hold our interval ID when we execute the "run" function
 var intervalId;
@@ -187,6 +187,8 @@ var rando = [];
 function run() {
     intervalId = setInterval(decrement, 1000);
 
+    $("#answerShow").html("");
+
     $("#gameShow").show();
 
     // http://stackoverflow.com/questions/962802#962890
@@ -224,6 +226,7 @@ function run() {
     $("#answer4").html(questions["q" + num][a4]);
 }
 
+
 //  The decrement function.
 function decrement() {
 
@@ -245,8 +248,10 @@ function decrement() {
         $("#gameShow").hide();
         $("#answerShow").html("<h2>Time's Up! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
         setTimeout(function() {
-                run();
-            }, 1500);
+            $("#answerShow").html("");
+            num++;
+            run();
+        }, 1500);
     }
 }
 
@@ -257,7 +262,7 @@ function stop() {
     clearInterval(intervalId);
 
     // Reset timer.
-    tickTock = 30;
+    tickTock = 15;
 }
 
 //  Execute the run function.

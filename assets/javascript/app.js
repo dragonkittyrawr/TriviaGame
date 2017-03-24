@@ -89,6 +89,8 @@ var questions = {
     ]
 };
 
+var objSize = Object.keys(questions).length;
+
 
 //  30 second timer.
 var tickTock = 30;
@@ -111,7 +113,11 @@ $(".answer").click(function answerSelect() {
 
     stop();
 
-    if (num !== questions.length) {
+    console.log(objSize);
+
+    console.log(questions);
+
+    if (num !== objSize) {
 
         //  When the answer is found correct or incorrect, restart timer.
 
@@ -124,17 +130,17 @@ $(".answer").click(function answerSelect() {
             $("#scoreShow").html("<h2>Correct Answers: " + score + "</h2>");
             setTimeout(function() {
                 run();
-            }, 2500);
+            }, 1500);
         } else {
             $("#answerShow").html("<h2>Sorry! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
             num++;
             $("#gameShow").hide();
             setTimeout(function() {
                 run();
-            }, 2500);
+            }, 1500);
         }
 
-    } else if (num === questions.length) {
+    } else if (num === objSize) {
         stop();
         score++;
         $("#gameShow").html("<h2>Game Over!  You got " + score + " correct!</h2>");
@@ -240,17 +246,17 @@ function decrement() {
         $("#answerShow").html("<h2>Time's Up! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
         setTimeout(function() {
                 run();
-            }, 2500);
+            }, 1500);
     }
 }
 
 //  The stop function
 function stop() {
 
-    //  Clears our intervalId
-    //  We just pass the name of the interval
-    //  to the clearInterval function.
+    //  Clear intervalId.
     clearInterval(intervalId);
+
+    // Reset timer.
     tickTock = 30;
 }
 

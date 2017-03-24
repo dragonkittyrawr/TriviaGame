@@ -6,11 +6,13 @@ body {
 }
 
 header {
-    height: 20%;
+    height: 230px;
+    text-align: center;
 }
 
 h1 {
     font-size: 200%;
+    text-align: center;
 }
 
 h2 {
@@ -19,6 +21,7 @@ h2 {
 
 main {
     height: 100%;
+    text-align: center;
 }
 
 table {
@@ -60,4 +63,19 @@ footer {
 #pictureShow {
     height: 400px;
     width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.bigLogo {
+     height: 300px;
+}
+
+.finalImage {
+    height: 400px;
+    text-align: center;
 }

@@ -53,7 +53,7 @@ var questions = {
         "Germany",
         "China",
         "Bender was manufactured in which country?",
-        "assets/images/benderHechoEnMexico.jpg"
+        "assets/images/benderHechoEnMexico.png"
     ],
 
     q6: [
@@ -107,8 +107,8 @@ var questions = {
 var objSize = Object.keys(questions).length;
 
 
-//  15 second timer.
-var tickTock = 15;
+//  20 second timer.
+var tickTock = 20;
 
 //  intervalID is needed for run function.
 var intervalId;
@@ -129,70 +129,93 @@ $(".answer").click(function answerSelect() {
 
     stop();
 
-    $("#pictureShow").html("<img src=\"" + questions["q" + num][5] + "\"></img>")
+    // Hide answers.
+    $("#gameShow").hide();
 
-    // If this is not the last question.
+    // Show associated picture.
+    $("#pictureShow").removeClass("hidden");
+    $("#pictureShow").html("<img src=\"" + questions["q" + num][5] + "\"></img>");
 
-    if (num !== objSize) {
 
-        // If the user selected the correct answer.
 
-        if ($(this).text() === questions["q" + num][0]) {
+    // If the user selected the correct answer.
 
-            // Display "Correct!".
-            $("#answerShow").html("<h2>Correct!</h2>");
+    if ($(this).text() === questions["q" + num][0]) {
 
-            // Increase num to move to next question.
-            num++;
+        // Display "Correct!".
+        $("#answerShow").html("<h2>Correct!</h2>");
 
-            // Increase score.
-            score++;
+        // Increase num to move to next question.
+        num++;
 
-            // Hide answers.
-            $("#gameShow").hide();
+        // Increase score.
+        score++;
 
-            // Update correct answers display.
-            $("#scoreShow").html("<h2>Correct Answers: " + score + "</h2>");
+        // Update correct answers display.
+        $("#scoreShow").html("<h2>Correct Answers: " + score + "</h2>");
+
+        // If this is not the last question.
+
+        if (num <= objSize) {
 
             // Delay next question for 1.5 seconds.
             setTimeout(function() {
                 //  Restart timer.
                 run();
-            }, 1500);
+            }, 3000);
         } else {
 
-            // Display correct answer.
-            $("#answerShow").html("<h2>Sorry! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
+            // Delay game over screen.
+            setTimeout(function() {
+                // Display game over screen.
+                $("#pictureShow").addClass("hidden");
+                $("#gameShow").show();
+                $("#gameShow").html("<h2>Game Over!  You got " + score + " out of " + objSize + " correct!</h2><img src=\"assets/images/futuramaMainThree.jpg\"class=\"finalImage\">");
 
-            // Increase num to move to next question.
-            num++;
+                // Clear out scoreShow, questionShow, answerShow, and timerShow
+                $("#scoreShow").html("");
+                $("#questionShow").html("");
+                $("#answerShow").html("");
+                $("#timerShow").html("");
+            }, 3000);
 
-            // Hide answers.
-            $("#gameShow").hide();
+        }
+
+    } else {
+
+        // Display correct answer.
+        $("#answerShow").html("<h2>Sorry! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
+
+        // Increase num to move to next question.
+        num++;
+
+        if (num <= objSize) {
 
             // Delay next question for 1.5 seconds.
             setTimeout(function() {
-                // Restart timer.
+                //  Restart timer.
                 run();
-            }, 1500);
+            }, 3000);
+        } else {
+
+            // Delay game over screen.
+            setTimeout(function() {
+
+                // Display game over screen.
+                $("#pictureShow").addClass("hidden");
+                $("#gameShow").show();
+                $("#gameShow").html("<h2>Game Over!  You got " + score + " out of " + objSize + " correct!</h2><img src=\"assets/images/futuramaMainThree.jpg\"class=\"finalImage\">");
+
+                // Clear out scoreShow, questionShow, answerShow, and timerShow
+                $("#scoreShow").html("");
+                $("#questionShow").html("");
+                $("#answerShow").html("");
+                $("#timerShow").html("");
+            }, 3000);
+
         }
 
-        // If this is the last question.
-    } else if (num === objSize || tickTock === 0) {
-        
-        // Stop the timer.
-        stop();
-
-        // Display game over screen.
-        $("#gameShow").html("<h2>Game Over!  You got " + score + " correct!</h2>");
-
-        // Clear out scoreShow, questionShow, answerShow, and timerShow
-        $("#scoreShow").html("");
-        $("#questionShow").html("");
-        $("#answerShow").html("");
-        $("#timerShow").html("");
     }
-
 })
 
 // Empty array to randomize answer placement.
@@ -205,6 +228,7 @@ function run() {
 
     // Blank out answerShow.
     $("#answerShow").html("");
+    $("#pictureShow").addClass("hidden");
     $("#pictureShow").html("");
 
     // Unhide gameShow.
@@ -217,7 +241,7 @@ function run() {
     function shuffle(array) {
         // Create variables tmp, current, and top.  Top is the length of the passed array.
         var tmp, current, top = array.length;
-        
+
         // Checks top exists.
         if (top)
             while (top--) {
@@ -270,6 +294,9 @@ function decrement() {
         // Stop the timer.
         stop();
 
+        $("#pictureShow").removeClass("hidden");
+        $("#pictureShow").html("<img src=\"" + questions["q" + num][5] + "\"></img>")
+
         //  Hide gameShow.
         $("#gameShow").hide();
 
@@ -284,7 +311,7 @@ function decrement() {
             // Move to next question.
             num++;
             run();
-        }, 1500);
+        }, 3000);
     }
 }
 
@@ -295,7 +322,7 @@ function stop() {
     clearInterval(intervalId);
 
     // Reset timer.
-    tickTock = 15;
+    tickTock = 20;
 }
 
 //  And game is go.

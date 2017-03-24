@@ -33,12 +33,13 @@ var questions = {
         "What company does Dr. Farnsworth run?"
     ],
     q4: [
-        "Kif Kroker?",
+        "Kif Kroker",
         "Al Roker",
         "Cif Coker",
         "Yik Kroker",
         "What is the name of Zapp Brannigan's lieutenant?"
     ],
+
     q5: [
         "Mexico",
         "U.S.A",
@@ -48,41 +49,43 @@ var questions = {
     ],
 
     q6: [
-    "Turanga",
-    "Leela",
-    "Munda",
-    "Smizmar",
-    "What is Leela's first name?"],
+        "Turanga",
+        "Leela",
+        "Munda",
+        "Smizmar",
+        "What is Leela's first name?"
+    ],
 
     q7: [
-    "A Hyper Intelligent Ape Named Gunther",
-    "A Neptonian",
-    "Himself from another dimension",
-    "Flexo",
-    "When Fry returns to college, who does he room with?"],
+        "A Hyper Intelligent Ape Named Gunther",
+        "A Neptonian",
+        "Himself from another dimension",
+        "Flexo",
+        "When Fry returns to college, who does he room with?"
+    ],
 
     q8: [
-    "To get a discount on ham flavored chewing gum.",
-    "To win a bet with Hermes.",
-    "They thought they were entering a raffle.",
-    "They were hypnotized.",
-    "Why did Fry and Bender enlist in the Earth Army?"
+        "To get a discount on ham flavored chewing gum.",
+        "To win a bet with Hermes.",
+        "They thought they were entering a raffle.",
+        "They were hypnotized.",
+        "Why did Fry and Bender enlist in the Earth Army?"
     ],
 
     q9: [
-    "Daffodil",
-    "Chump",
-    "Chumpette",
-    "Pimpmobile",
-    "Which word is revealed to be Bender's most commonly used?"
+        "Daffodil",
+        "Chump",
+        "Chumpette",
+        "Pimpmobile",
+        "Which word is revealed to be Bender's most commonly used?"
     ],
 
     q10: [
-    "Amy Wong",
-    "Professor Farnsworth",
-    "Scruffy, the janior",
-    "Hermes",
-    "When Fry's head is detached in \"Put Your Head on My Shoulders\", whose shoulder is it attached to?"
+        "Amy Wong",
+        "Professor Farnsworth",
+        "Scruffy, the janior",
+        "Hermes",
+        "When Fry's head is detached in \"Put Your Head on My Shoulders\", whose shoulder is it attached to?"
     ]
 };
 
@@ -117,18 +120,24 @@ $(".answer").click(function answerSelect() {
             $("#answerShow").html("<h2>Correct!</h2>");
             num++;
             score++;
+            $("#gameShow").hide();
             $("#scoreShow").html("<h2>Correct Answers: " + score + "</h2>");
-            run();
+            setTimeout(function() {
+                run();
+            }, 2500);
         } else {
             $("#answerShow").html("<h2>Sorry! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
-            num++
-            run();
+            num++;
+            $("#gameShow").hide();
+            setTimeout(function() {
+                run();
+            }, 2500);
         }
 
     } else if (num === questions.length) {
         stop();
         score++;
-        $("#gameShow").html("<h2>Game Over!  You got " + score + " correct!</h2>")
+        $("#gameShow").html("<h2>Game Over!  You got " + score + " correct!</h2>");
         $("#scoreShow").html("");
         $("#questionShow").html("");
         $("#answerShow").html("");
@@ -171,6 +180,8 @@ var rando = [];
 //  Timer runs for 30 seconds.
 function run() {
     intervalId = setInterval(decrement, 1000);
+
+    $("#gameShow").show();
 
     // http://stackoverflow.com/questions/962802#962890
 
@@ -225,8 +236,11 @@ function decrement() {
         // nextQuestion();
 
         //  Alert the user that time is up.
+        $("#gameShow").hide();
         $("#answerShow").html("<h2>Time's Up! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
-        run();
+        setTimeout(function() {
+                run();
+            }, 2500);
     }
 }
 

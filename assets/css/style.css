@@ -36,7 +36,8 @@ tr {
 
 td {
 	padding: 15%;
-	white-space: nowrap;
+    font-weight: 500;
+	/*white-space: nowrap;*/
 }
 
 footer {
@@ -54,4 +55,9 @@ footer {
 }
 #answer4 {
 	background: yellow;
+}
+
+#pictureShow {
+    height: 400px;
+    width: 400px;
 }

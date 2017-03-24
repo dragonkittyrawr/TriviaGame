@@ -11,40 +11,78 @@
 
 var questions = {
     q1: [
-        "I DUNNO, IS IT???",
-        "It is not.",
-        "Sure is, friend.",
-        "It is.",
-        "IS IT???"
+        "Nibbler",
+        "Norman",
+        "Nubben",
+        "Gnawer",
+        "What is the name of Leela's Pet?"
     ],
     q2: [
-        "I DUNNO, IS IT STILL???",
-        "It is not.",
-        "Sure is, friend.",
-        "It is.",
-        "IS IT STILL???"
+        "Pizza Delivery Boy",
+        "Pool Boy",
+        "Taxi Driver",
+        "Bicycle Messenger",
+        "What was Fry's job in 1999?"
     ],
 
     q3: [
-        "I DUNNO, IS IT ALSO???",
-        "It is not.",
-        "Sure is, friend.",
-        "It is.",
-        "IS IT ALSO???"
+        "Planet Express",
+        "Intersteller Express",
+        "Planet Delivery",
+        "Space Delivery",
+        "What company does Dr. Farnsworth run?"
     ],
     q4: [
-        "I DUNNO, IS IT HERE???",
-        "It is not.",
-        "Sure is, friend.",
-        "It is.",
-        "IS IT HERE???"
+        "Kif Kroker?",
+        "Al Roker",
+        "Cif Coker",
+        "Yik Kroker",
+        "What is the name of Zapp Brannigan's lieutenant?"
     ],
     q5: [
-        "I DUNNO, IS IT TODAY???",
-        "It is not.",
-        "Sure is, friend.",
-        "It is.",
-        "IS IT TODAY???"
+        "Mexico",
+        "U.S.A",
+        "Germany",
+        "China",
+        "Bender was manufactured in which country?"
+    ],
+
+    q6: [
+    "Turanga",
+    "Leela",
+    "Munda",
+    "Smizmar",
+    "What is Leela's first name?"],
+
+    q7: [
+    "A Hyper Intelligent Ape Named Gunther",
+    "A Neptonian",
+    "Himself from another dimension",
+    "Flexo",
+    "When Fry returns to college, who does he room with?"],
+
+    q8: [
+    "To get a discount on ham flavored chewing gum.",
+    "To win a bet with Hermes.",
+    "They thought they were entering a raffle.",
+    "They were hypnotized.",
+    "Why did Fry and Bender enlist in the Earth Army?"
+    ],
+
+    q9: [
+    "Daffodil",
+    "Chump",
+    "Chumpette",
+    "Pimpmobile",
+    "Which word is revealed to be Bender's most commonly used?"
+    ],
+
+    q10: [
+    "Amy Wong",
+    "Professor Farnsworth",
+    "Scruffy, the janior",
+    "Hermes",
+    "When Fry's head is detached in \"Put Your Head on My Shoulders\", whose shoulder is it attached to?"
     ]
 };
 
@@ -70,7 +108,7 @@ $(".answer").click(function answerSelect() {
 
     stop();
 
-    if (num !== 5) {
+    if (num !== questions.length) {
 
         //  When the answer is found correct or incorrect, restart timer.
 
@@ -87,7 +125,7 @@ $(".answer").click(function answerSelect() {
             run();
         }
 
-    } else if (num === 5) {
+    } else if (num === questions.length) {
         stop();
         score++;
         $("#gameShow").html("<h2>Game Over!  You got " + score + " correct!</h2>")
@@ -188,6 +226,7 @@ function decrement() {
 
         //  Alert the user that time is up.
         $("#answerShow").html("<h2>Time's Up! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
+        run();
     }
 }
 

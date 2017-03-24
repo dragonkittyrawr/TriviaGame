@@ -1,50 +1,50 @@
 // var questions = {
 //     q1: [
-//         "question",
 //         "correct",
+//         "decoy1",
 //         "decoy2",
 //         "decoy3",
-//         "decoy4"
+//         "question"
 //     ]
 // };
 
 
 var questions = {
     q1: [
-        "IS IT???",
         "I DUNNO, IS IT???",
         "It is not.",
         "Sure is, friend.",
-        "It is."
+        "It is.",
+        "IS IT???"
     ],
     q2: [
-        "IS IT STILL???",
-        "I DUNNO, IS IT???",
+        "I DUNNO, IS IT STILL???",
         "It is not.",
         "Sure is, friend.",
-        "It is."
+        "It is.",
+        "IS IT STILL???"
     ],
 
     q3: [
-        "IS IT ALSO???",
-        "I DUNNO, IS IT???",
+        "I DUNNO, IS IT ALSO???",
         "It is not.",
         "Sure is, friend.",
-        "It is."
+        "It is.",
+        "IS IT ALSO???"
     ],
     q4: [
-        "IS IT NOW???",
-        "I DUNNO, IS IT???",
+        "I DUNNO, IS IT HERE???",
         "It is not.",
         "Sure is, friend.",
-        "It is."
+        "It is.",
+        "IS IT HERE???"
     ],
     q5: [
-        "IS IT TODAY???",
-        "I DUNNO, IS IT???",
+        "I DUNNO, IS IT TODAY???",
         "It is not.",
         "Sure is, friend.",
-        "It is."
+        "It is.",
+        "IS IT TODAY???"
     ]
 };
 
@@ -57,6 +57,7 @@ var intervalId;
 
 var num = 1;
 
+var score = 0;
 
 
 $(".answer").click(function answerSelect() {
@@ -69,18 +70,33 @@ $(".answer").click(function answerSelect() {
 
     stop();
 
-    //  When the answer is found correct or incorrect, restart timer.
+    if (num !== 5) {
 
-    if ($(this).text() === questions["q" + num][1]) {
+        //  When the answer is found correct or incorrect, restart timer.
 
-        $("#answerShow").html("<h2>Correct!</h2>");
-        num++;
-        run();
-    } else {
-        $("#answerShow").html("<h2>Sorry! The correct answer was \"" + questions["q" + num][1] + "\"</h2>");
-        num++
-        run();
+        if ($(this).text() === questions["q" + num][0]) {
+
+            $("#answerShow").html("<h2>Correct!</h2>");
+            num++;
+            score++;
+            $("#scoreShow").html("<h2>Correct Answers: " + score + "</h2>");
+            run();
+        } else {
+            $("#answerShow").html("<h2>Sorry! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
+            num++
+            run();
+        }
+
+    } else if (num === 5) {
+        stop();
+        score++;
+        $("#gameShow").html("<h2>Game Over!  You got " + score + " correct!</h2>")
+        $("#scoreShow").html("");
+        $("#questionShow").html("");
+        $("#answerShow").html("");
+        $("#timerShow").html("");
     }
+
 })
 
 
@@ -125,7 +141,7 @@ function run() {
     function shuffle(array) {
         var tmp, current, top = array.length;
         if (top)
-            while (--top) {
+            while (top--) {
                 current = Math.floor(Math.random() * (top + 1));
                 tmp = array[current];
                 array[current] = array[top];
@@ -146,7 +162,7 @@ function run() {
 
     var a4 = rando[3];
 
-    $("#questionShow").html("<h2>Question: " + questions["q" + num][0] + "</h2");
+    $("#questionShow").html("<h2>Question: " + questions["q" + num][4] + "</h2");
     $("#answer1").html(questions["q" + num][a1]);
     $("#answer2").html(questions["q" + num][a2]);
     $("#answer3").html(questions["q" + num][a3]);
@@ -171,7 +187,7 @@ function decrement() {
         // nextQuestion();
 
         //  Alert the user that time is up.
-        $("#answerShow").html("<h2>Time's Up! The correct answer was \"" + questions["q" + num][1] + "\"</h2>");
+        $("#answerShow").html("<h2>Time's Up! The correct answer was \"" + questions["q" + num][0] + "\"</h2>");
     }
 }
 
